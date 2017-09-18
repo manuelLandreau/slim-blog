@@ -3,14 +3,16 @@
 namespace App\Controller;
 
 use App\Resource\ArticleResource;
+use Psr\Container\ContainerInterface;
 use \Slim\Http\Request;
 use \Slim\Http\Response;
+use Slim\Views\Twig;
 
 /**
  * Class ArticleController
  * @package App\Controller
  */
-final class ArticleController
+final class ArticleController extends AbstractController
 {
     private $articleResource;
 
@@ -18,23 +20,79 @@ final class ArticleController
      * ArticleController constructor.
      * @param ArticleResource $articleResource
      */
-    public function __construct(ArticleResource $articleResource)
+    public function __construct(ArticleResource $articleResource, ContainerInterface $container)
     {
+        parent::__construct($container);
         $this->articleResource = $articleResource;
     }
 
-    public function fetch(Request $request, Response $response)
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param Twig $view
+     * @return Response|string
+     */
+    public function IndexAction(Request $request, Response $response, Twig $view)
     {
         $articles = $this->articleResource->get();
-        return $response->withJSON($articles);
+        return $view->render($response, 'home/index.twig', ['articles' => $articles]);
     }
 
-    public function fetchOne(Request $request, Response $response, $args)
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param Twig $view
+     * @return Response|string
+     */
+    public function showAction(Request $request, Response $response, Twig $view)
     {
-        $article = $this->articleResource->get($args);
-        if ($article) {
-            return $response->withJSON($article);
+        $id = $request->getAttributes()['routeInfo'][2]['id']; // To improve
+        $article = $this->articleResource->get($id);
+
+        // Csrf protection
+        $csrf = $this->getCsrf($request);
+        return $view->render($response, 'article/show.twig', ['article' => $article, 'csrf' => $csrf]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param Twig $view
+     * @return Response|string
+     */
+    public function createOrUpdateAction(Request $request, Response $response, Twig $view)
+    {
+        // Id param
+        $id = $request->getAttributes()['routeInfo'][2]['id'];
+
+        // Csrf protection
+        $csrf = $this->getCsrf($request);
+
+        if (empty($id)) {
+            if ($request->getMethod() == 'POST') {
+                $article = $this->articleResource->create($request);
+                return $view->render($response, 'article/show.twig', ['article' => $article]);
+            }
+            return $view->render($response, 'article/new.twig', ['csrf' => $csrf]);
+        } else {
+            if ($request->getMethod() == 'POST') {
+                $article = $this->articleResource->update($request, $id);
+                return $view->render($response, 'article/show.twig', ['article' => $article]);
+            }
+            $article = $this->articleResource->get($id);
+            return $view->render($response, 'article/edit.twig', ['article' => $article, 'csrf' => $csrf]);
         }
-        return $response->withStatus(404, 'No article found with that slug.');
+    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return Response|string
+     */
+    public function deleteAction(Request $request, Response $response)
+    {
+        $id = $request->getAttributes()['routeInfo'][2]['id'];
+        $this->articleResource->delete($id);
+        return $response->withRedirect($this->containter->get('router')->pathFor('home'));
     }
 }

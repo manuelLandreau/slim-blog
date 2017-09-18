@@ -2,58 +2,59 @@
 
 namespace App\Entity;
 
-use App\Entity;
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="articles", uniqueConstraints={@ORM\UniqueConstraint(name="article_slug", columns={"slug"})}))
+ * @Entity
+ * @Table(name="articles")
  */
 class Article
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Id
+     * @Column(name="id", type="integer")
+     * @GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @Column(type="string", length=64)
      */
     protected $title;
 
     /**
-     * @ORM\Column(type="string", length=150)
+     * @Column(type="text", length=150)
      */
     protected $description;
 
     /**
-     * @ORM\Column(type="string")
+     * @Column(type="date", name="created_at")
+     */
+    protected $createdAt;
+
+    /**
+     * @Column(type="date", name="updated_at")
+     */
+    protected $updatedAt;
+
+    /**
+     * @Column(type="text")
      */
     protected $content;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * Url name
+     * @Column(type="string", length=100, unique=true)
      */
     protected $slug;
 
-    /**
-     * Get array copy of object
-     *
-     * @return array
-     */
-    public function getArrayCopy()
-    {
-        return get_object_vars($this);
-    }
 
     /**
      * Get article id
      *
-     * @ORM\return integer
+     * @return integer
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -61,72 +62,114 @@ class Article
     /**
      * @param integer $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
     /**
-     * @param mixed $title
+     * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
 
     /**
-     * @param mixed $description
+     * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
-    public function getContent()
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContent(): string
     {
         return $this->content;
     }
 
     /**
-     * @param mixed $content
+     * @param string $content
      */
-    public function setContent($content)
+    public function setContent(string $content)
     {
         $this->content = $content;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getSlug()
+    public function getSlug(): string
     {
         return $this->slug;
     }
 
     /**
-     * @param mixed $slug
+     * @param string $slug
      */
-    public function setSlug($slug)
+    public function setSlug(string $slug)
     {
         $this->slug = $slug;
+    }
+
+    /**
+     * Get array copy of object
+     *
+     * @return array
+     */
+    public function getArrayCopy(): array
+    {
+        return get_object_vars($this);
     }
 }

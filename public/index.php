@@ -1,21 +1,25 @@
 <?php
 
+if (PHP_SAPI == 'cli-server') {
+    // To help the built-in PHP dev server, check if the request was actually for
+    // something which should probably be served as a static file
+    $file = __DIR__ . $_SERVER['REQUEST_URI'];
+    if (is_file($file)) {
+        return false;
+    }
+}
+
 session_start();
 
 require __DIR__.'/../vendor/autoload.php';
 
-$paths = array(__DIR__ . '/../src/Entity');
-$isDevMode = true;
-
-$settings = include __DIR__ . '/../src/container.php';
-
-// the connection configuration
-$dbParams = $settings['doctrine.config']['connection'];
-
-$config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
-$entityManager = \Doctrine\ORM\EntityManager::create($dbParams, $config);
+$settings = include __DIR__ . '/../src/dependencies.php';
 
 $app = new \App\App;
+
+$container = $app->getContainer();
+
+require __DIR__ . '/../src/middleware.php';
 
 require __DIR__ . '/../src/routes.php';
 
