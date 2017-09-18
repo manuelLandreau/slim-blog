@@ -1,0 +1,15 @@
+/* Home page css */
+.shuffle-containe a {
+  text-decoration: none; }
+
+.card {
+  position: relative;
+  margin: 10px 0;
+  padding: 20px 15px; }
+
+.card:hover {
+  background-color: #eeeeee; }
+
+.card hr {
+  margin-top: 10px;
+  margin-bottom: 10px; }

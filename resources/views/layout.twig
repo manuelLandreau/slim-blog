@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/main.css">
+    {% block stylesheet %}{% endblock %}
+    <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path_for('home') }}">Back office</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ path_for('article.new') }}"><span class="glyphicon glyphicon-plus"></span> Create an article</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Parameters</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid bg-white pt20px">
+    <div class="row mt15px">
+        <div class="col-sm-2 sidemenu">
+            {% block sidemenu %}{% endblock %}
+        </div>
+        <div class="col-sm-8">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+<footer class="container-fluid text-center">
+    <p>&#9400; 2017 - Manuel Landreau</p>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% block javascript %}{% endblock %}
+
+</body>
+</html>

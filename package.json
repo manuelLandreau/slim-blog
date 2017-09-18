@@ -2,6 +2,10 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
     "gulp": "^3.9.1",
-    "gulp-sass": "^3.1.0"
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "shufflejs": "^5.0.1",
+    "trumbowyg": "^2.7.2"
   }
 }

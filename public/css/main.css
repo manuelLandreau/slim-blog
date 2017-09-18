@@ -1,0 +1,31 @@
+/* main.scss - Common css */
+body {
+  background-color: #555; }
+
+.navbar {
+  margin-bottom: 0; }
+
+.navbar-default {
+  border: 0; }
+
+.bg-white {
+  background-color: white; }
+
+.sidemenu {
+  height: 500px; }
+
+.mt15px {
+  margin-top: 15px; }
+
+.mb10px {
+  margin-bottom: 10px; }
+
+.mb20px {
+  margin-bottom: 20px; }
+
+.pt20px {
+  padding-top: 20px; }
+
+footer {
+  color: white;
+  padding: 15px; }

@@ -1,0 +1,17 @@
+/* Article page css (show one) */
+.nav > li > form .btn-link {
+  width: 100%;
+  padding: 10px 15px 10px 15px;
+  text-align: left; }
+
+.nav > li > form .btn-link:hover {
+  text-decoration: none; }
+
+.nav > li > form a:hover, .nav > li > form a:focus {
+  text-decoration: none;
+  background-color: #eeeeee; }
+
+.nav > li > form a {
+  position: relative;
+  display: block;
+  padding: 0; }

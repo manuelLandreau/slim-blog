@@ -1,0 +1,35 @@
+{% extends "layout.twig" %}
+
+{% block title %}SLIM Blog - {{ article.title }}{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/article/article.css">
+{% endblock %}
+
+{% block sidemenu %}
+    <ul class="nav nav-pills nav-stacked">
+        <li>
+            <a href="{{ path_for('article.edit', {'id': article.id}) }}">
+                <span class="glyphicon glyphicon-pencil"></span> Edit
+            </a>
+        </li>
+        <li class="btn-warning">
+            <form action="{{ path_for('article.delete', {'id': article.id}) }}" method="post">
+                <input type="hidden" name="{{csrf.nameKey}}" value="{{csrf.name}}">
+                <input type="hidden" name="{{csrf.valueKey}}" value="{{csrf.value}}">
+                <a href="#">
+                    <button class="btn btn-link" type="submit"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                </a>
+            </form>
+        </li>
+        <li><a href="{{ path_for('home') }}"><span class="glyphicon glyphicon-arrow-left"></span> Back to the list</a></li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+    <h1>{{ article.title }}</h1>
+    <div class="mb20px">{{ article.content|raw }}</div>
+    <div class="text-muted text-right">
+        Last update {{ article.updatedAt|date("m/d/Y", "Europe/Paris") }} at {{ article.updatedAt|date("h:m", "Europe/Paris") }}
+    </div>
+{% endblock %}
