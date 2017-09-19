@@ -48,4 +48,20 @@ final class ApiController
         }
         return $response->withStatus(404, 'No article found with that slug.');
     }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return Response
+     */
+    public function fetchOneBySlug(Request $request, Response $response): Response
+    {
+        $slug = $request->getAttributes()['routeInfo'][2]['slug']; // To improve
+        $article = $this->articleResource->getBySlug($slug);
+        if ($article) {
+            return $response->withJSON($article);
+        }
+        return $response->withStatus(404, 'No article found with that slug.');
+    }
 }

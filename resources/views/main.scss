@@ -20,6 +20,17 @@ body {
   height: 500px;
 }
 
+.relative {
+  position: relative;
+}
+
+.flash {
+  display: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
 .mt15px {
   margin-top: 15px;
 }

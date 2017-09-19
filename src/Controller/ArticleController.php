@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Resource\ArticleResource;
+use Doctrine\ORM\ORMInvalidArgumentException;
 use Psr\Container\ContainerInterface;
 use \Slim\Http\Request;
 use \Slim\Http\Response;
 use Slim\Views\Twig;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * Class ArticleController
@@ -19,6 +21,7 @@ final class ArticleController extends AbstractController
     /**
      * ArticleController constructor.
      * @param ArticleResource $articleResource
+     * @param ContainerInterface $container
      */
     public function __construct(ArticleResource $articleResource, ContainerInterface $container)
     {
@@ -63,21 +66,29 @@ final class ArticleController extends AbstractController
     public function createOrUpdateAction(Request $request, Response $response, Twig $view)
     {
         // Id param
-        $id = $request->getAttributes()['routeInfo'][2]['id'];
+        $id = $request->getAttributes()['routeInfo'][2]['id']; // Todo:  improve
 
-        // Csrf protection
+        // get the Csrf tokens
         $csrf = $this->getCsrf($request);
 
         if (empty($id)) {
             if ($request->getMethod() == 'POST') {
                 $article = $this->articleResource->create($request);
-                return $view->render($response, 'article/show.twig', ['article' => $article]);
+                $this->success('Article "' . $article->getTitle() . '" successfully created.');
+                return $response->withRedirect(
+                    $this->getContainer()->get('router')->pathFor('article.show', ['id' => $article->getId()]),
+                    301
+                );
             }
             return $view->render($response, 'article/new.twig', ['csrf' => $csrf]);
         } else {
             if ($request->getMethod() == 'POST') {
                 $article = $this->articleResource->update($request, $id);
-                return $view->render($response, 'article/show.twig', ['article' => $article]);
+                $this->success('Article "' . $article->getTitle() . '" successfully updated.');
+                return $response->withRedirect(
+                    $this->getContainer()->get('router')->pathFor('article.show', ['id' => $article->getId()]),
+                    301
+                );
             }
             $article = $this->articleResource->get($id);
             return $view->render($response, 'article/edit.twig', ['article' => $article, 'csrf' => $csrf]);
@@ -91,8 +102,9 @@ final class ArticleController extends AbstractController
      */
     public function deleteAction(Request $request, Response $response)
     {
-        $id = $request->getAttributes()['routeInfo'][2]['id'];
+        $id = $request->getAttributes()['routeInfo'][2]['id']; // To improve
         $this->articleResource->delete($id);
-        return $response->withRedirect($this->containter->get('router')->pathFor('home'));
+        $this->success('Article "' . $id . '" successfully removed.');
+        return $response->withRedirect($this->getContainer()->get('router')->pathFor('home'), 301);
     }
 }

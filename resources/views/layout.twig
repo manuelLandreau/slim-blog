@@ -23,8 +23,16 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ path_for('article.new') }}"><span class="glyphicon glyphicon-plus"></span> Create an article</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Parameters</a></li>
+                <li class="active">
+                    <a href="{{ path_for('article.new') }}">
+                        <span class="glyphicon glyphicon-plus"></span> Create an article
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="Not yet ready !">
+                        <span class="glyphicon glyphicon-cog"></span> Parameters
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -41,12 +49,27 @@
     </div>
 </div>
 
+{#Flash messages#}
+{{ flash|raw }}
+
 <footer class="container-fluid text-center">
     <p>&#9400; 2017 - Manuel Landreau</p>
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazy/1.7.4/jquery.lazy.min.js"></script>
+<script>
+    $(function(){
+        // Flash messages effects
+        $('.flash')
+            .fadeIn(500)
+            .delay(2000)
+            .fadeOut(500);
+
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 {% block javascript %}{% endblock %}
 
 </body>

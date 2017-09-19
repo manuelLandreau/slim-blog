@@ -6,53 +6,60 @@ use Interop\Container\ContainerInterface;
 
 // PHP-DI dependencies definitions
 
-return array(
+return [
 
     // Twig
     Twig::class => function (ContainerInterface $c) {
-        $twig = new Twig(__DIR__.'/../resources/views', array(
+        $twig = new Twig(__DIR__.'/../resources/views', [
             'cache' => false
-        ));
+        ]);
 
         $twig->addExtension(new TwigExtension(
             $c->get('router'),
             $c->get('request')->getUri()
         ));
 
+        $twig->getEnvironment()->addGlobal('flash', $c->get('flash')->flash());
+
         return $twig;
     },
 
     // Monolog
-    'monolog.config' => array(
+    'monolog.config' => [
         'name' => 'slim-app',
         'path' => __DIR__ . '/../logs/app.log',
         'level' => \Monolog\Logger::DEBUG,
-    ),
+    ],
     'logger' => function (\Psr\Container\ContainerInterface $c) {
         $logger = new Monolog\Logger($c->get('monolog.config')['name']);
         $logger->pushProcessor(new Monolog\Processor\UidProcessor());
-        $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], $c->get('monolog.config')['level']));
+        $logger->pushHandler(
+            new Monolog\Handler\StreamHandler(
+                $c->get('monolog.config')['path'],
+                $c->get('monolog.config')['level']
+            )
+        );
         return $logger;
     },
 
     // Doctrine
-    'doctrine.config' => array(
-        'meta' => array(
-            'entity_path' => array(
+    'doctrine.config' => [
+        'meta' => [
+            'entity_path' => [
                 __DIR__ . '/Entity'
-            ),
+            ],
             'auto_generate_proxies' => true,
             'proxy_dir' => __DIR__ . '/../cache/proxies',
             'cache' => null,
-        ),
-        'connection' => array(
+        ],
+        'connection' => [
             'driver' => 'pdo_mysql',
             'host' => 'localhost',
             'dbname' => 'foo',
             'user' => 'root',
             'password' => '',
-        )
-    ),
+        ]
+    ],
     \Doctrine\ORM\EntityManager::class => function (\Psr\Container\ContainerInterface $c) {
         $settings = $c->get('doctrine.config');
         $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(
@@ -65,13 +72,13 @@ return array(
         return \Doctrine\ORM\EntityManager::create($settings['connection'], $config);
     },
 
-    'csrf' => function (\Psr\Container\ContainerInterface $c) {
+    // Csrf protection
+    'csrf' => function () {
         return new \Slim\Csrf\Guard;
     },
 
-    // ArticleController
-    'articleController' => function (\Psr\Container\ContainerInterface $c) {
-        $articleResource = new \App\Resource\ArticleResource($c->get(\Doctrine\ORM\EntityManager::class));
-        return new App\Controller\ArticleController($articleResource, $c);
-    },
-);
+    // Flash messages
+    'flash' => function () {
+        return new Pagerange\Flash\Flash();
+    }
+];

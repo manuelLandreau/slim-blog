@@ -20,14 +20,12 @@ use \Slim\Http\Response;
 //            }]
 //    ));
 
-// A middleware for enabling CORS
-$app->options('/{routes:.+}', function ($request, $response, $args) {
-    return $response;
-})
-    ->add(function (Request $request, Response $response, $next) {
-    $res = $next($request, $response);
-    return $res
-        ->withHeader('Access-Control-Allow-Origin', '*')
-        ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
-        ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-});
+// Cors middleware
+$app->add(new \Tuupola\Middleware\Cors([
+    "origin" => ["*"],
+    "methods" => ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    "headers.allow" => [],
+    "headers.expose" => [],
+    "credentials" => false,
+    "cache" => 0,
+]));

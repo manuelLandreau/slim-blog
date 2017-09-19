@@ -14,8 +14,8 @@
     </div>
     <div class="shuffle-container mb20px">
         {% for article in articles %}
-        <a href="{{ path_for('article', { 'id': article.id }) }}">
-            <div class="article-item col-md-4 card" data-title="{{ article.title }}">
+        <a href="{{ path_for('article.show', { 'id': article.id }) }}">
+            <div class="article-item col-md-4 card lazy" data-title="{{ article.title }}">
                 <div class="card-block">
                     <h4 class="list-group-item-heading article-item__title">{{ article.title }}</h4>
                     <hr>
@@ -32,6 +32,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Shuffle/5.0.1/shuffle.min.js"></script>
     <script>
         $(function () {
+            // Article search by title (Shuffle.js)
             var Shuffle = window.Shuffle;
             var element = document.querySelector('.shuffle-container');
             var shuffleInstance = new Shuffle(element, {
@@ -50,6 +51,11 @@
                     }
                 });
             });
+        });
+
+        // Article lazy loading (Lazy.js)
+        $('.lazy').lazy({
+            placeholder: "data:image/gif;base64,R0lGODlhEALAPQAPzl5uLr9Nrl8e7..."
         });
     </script>
 {% endblock %}
