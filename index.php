@@ -11,9 +11,9 @@ if (PHP_SAPI == 'cli-server') {
 
 session_start();
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-$dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
+$dotenv = new Dotenv\Dotenv(__DIR__ . '/slim-blog/');
 $dotenv->load();
 
 $settings = include __DIR__ . '/../src/dependencies.php';
