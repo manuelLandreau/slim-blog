@@ -3,7 +3,6 @@
     "description": "Simple slim skeleton using php-di bridge, doctrine ORM and twig views",
     "type": "project",
     "require": {
-        "php": ">=7.1.0",
         "slim/slim": "^3.4",
         "doctrine/orm": "v2.5.9",
         "php-di/slim-bridge": "^1.0",
