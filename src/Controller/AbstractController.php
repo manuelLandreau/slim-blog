@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
+use Slim\Views\Twig;
 
 /**
  * Class AbstractController
@@ -13,13 +14,16 @@ abstract class AbstractController
 {
     protected $container;
 
+    protected $view;
+
     /**
      * AbstractController constructor.
      * @param ContainerInterface $container
      */
-    function __construct(ContainerInterface $container)
+    function __construct(ContainerInterface $container, Twig $view)
     {
         $this->container = $container;
+        $this->view = $view;
     }
 
     /**

@@ -30,5 +30,5 @@ $app->get('/articles/edit/{id:[0-9]+}', ['\App\Controller\ArticleController', 'c
 $app->post('/articles/edit/{id:[0-9]+}', ['\App\Controller\ArticleController', 'createOrUpdateAction'])
     ->setName('article.update');
 
-$app->post('/articles/delete/{id:[0-9]+}', ['\App\Controller\ArticleController', 'deleteAction'])
+$app->delete('/articles/delete/{id:[0-9]+}', ['\App\Controller\ArticleController', 'deleteAction'])
     ->setName('article.delete');

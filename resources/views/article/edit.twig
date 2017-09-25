@@ -14,6 +14,7 @@
                 <input type="hidden" name="{{csrf.nameKey}}" value="{{csrf.name}}">
                 <input type="hidden" name="{{csrf.valueKey}}" value="{{csrf.value}}">
                 <a href="#">
+                    <input type="hidden" name="__METHOD" value="DELETE">
                     <button class="btn btn-link" type="submit"><span class="glyphicon glyphicon-remove"></span> Delete</button>
                 </a>
             </form>

@@ -1,82 +1,39 @@
-@import "~knacss/sass/knacss.scss";
+@import "~bulma/sass/utilities/_all";
+@import "~bulma/sass/base/_all";
+@import "~bulma/sass/elements/_all";
+@import "~bulma/sass/components/_all";
+@import "~bulma/sass/grid/_all";
+@import "~bulma/sass/layout/_all";
 
-//----------------------- Knacss -----------------------//
-// Config file and project variables
-
-// tiny font sizes (mobile first)
-$base-font-size: 1.4rem !default; // ex. 1.4rem would be "14px" equivalent
-$line-height: 1.4 !default;
-$h1-size: 2.8rem !default; // equiv "28px"
-$h2-size: 2.4rem !default; // equiv "24px"
-$h3-size: 2.0rem !default; // equiv "20px"
-$h4-size: 1.8rem !default; // equiv "18px"
-$h5-size: 1.6rem !default; // equiv "18px"
-$h6-size: 1.4rem !default; // equiv "14px"
-
-// large font sizes
-$base-font-size-l: 1.6rem !default; // ex. 1.6rem would be "16px" equivalent
-$line-height-l: 1.5 !default;
-$h1-size-l: 3.2rem !default; // equiv "32px"
-$h2-size-l: 2.8rem !default; // equiv "28px"
-$h3-size-l: 2.4rem !default; // equiv "24px"
-$h4-size-l: 2.0rem !default; // equiv "20px"
-$h5-size-l: 1.8rem !default; // equiv "18px"
-$h6-size-l: 1.6rem !default; // equiv "16px"
-
-// font stacks
-$font-stack-common: sans-serif !default; // common font
-$font-stack-headings: sans-serif !default; // headings font
-$font-stack-monospace: consolas, courier, monospace !default; // monospace font
-
-$dark: #121212 !default;
-$light: #FFF !default;
-$red: #f44336;
-$pink: #e91e63;
-$purple: #9c27b0;
-$deep: #673ab7;
-$indigo: #3f51b5;
-$blue: #2196f3;
-$lightblue: #03a9f4;
-$cyan: #00bcd4;
-$teal: #009688;
-$green: #4caf50;
-$lightgreen: #8bc34a;
-$lime: #cddc39;
-$yellow: #ffeb3b;
-$amber: #ffc107;
-$orange: #ff9800;
-$deeporange: #ff5722;
-$brown: #795548;
-$grey2: #9e9e9e;
-$bluegrey: #607d8b;
-$cream: #F0F2EC !default;
-$blue: #305E91 !default;
-$grey: #DDD !default;
-$lightgrey: #F8F8F8 !default;
-
-// colors used in project
-$color-base: $color1;
-$color-link: $color3;
-$background-base: $color2;
-
-// If you don't want any effect on focused/hovered links,
-// comment variable below or make it equal to either $color-link or false or null
-$color-link-hover: $color4;
-$brand-primary: $color5;
-
-// spacings (choose unit you prefer)
-$tiny-value: .5rem !default; // tiny value for margins / paddings
-$tiny-plus-value: .7rem !default; // tiny+ value for margins / paddings
-$small-value: 1rem !default; // small value for margins / paddings
-$small-plus-value: 1.5rem !default; // small+ value for margins / paddings
-$medium-value: 2rem !default; // medium value for margins / paddings
-$medium-plus-value: 3rem !default; // medium+ value for margins / paddings
-$large-value: 4rem !default; // large value for margins / paddings
-$large-plus-value: 6rem !default; // large value for margins / paddings
-$extra-large-value: 8rem !default; // extra large value for margins / paddings
-$extra-large-plus-value: 12rem !default; // extra large value for margins / paddings
-$ultra-large-value: 16rem !default; // ultra large value for margins / paddings
-$ultra-large-plus-value: 20rem !default; // ultra large value for margins / paddings
-
-//kna-namespace (default : null)
-$kna-namespace: null !default;
+body {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+.box {
+  border-radius: 0;
+}
+.content li + li {
+  margin-top: 0;
+}
+.has-text-muted {
+  color: #95A5A6;
+}
+.fa {
+  font-size:10px;
+  padding-top:3px;
+  color: #95A5A6;
+}
+.panel-block-item {
+  display: inline-block;
+  color: #95A5A6;
+  font-weight: bold;
+  padding: 0 10px;
+}
+.card {
+  margin-bottom: 30px;
+}
+.cart-icon {
+  padding-top:10px;
+}
+.product-header {
+  background-color:#fafafa;
+}
