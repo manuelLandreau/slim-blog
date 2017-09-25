@@ -54,7 +54,7 @@ return [
                 'cache' => null,
             ],
             'connection' => [
-                'driver' => 'pdo_mysql',
+                'driver' => 'mysqli',
                 'host' => getenv('HOST'),
                 'dbname' => getenv('DATABASE'),
                 'user' => getenv('DB_USER'),
