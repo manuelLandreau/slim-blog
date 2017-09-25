@@ -3,8 +3,5 @@
 /.idea
 yarn.lock
 composer.lock
-/public/css
-/public/fonts
-/public/js
 /app/node_modules
 .env
