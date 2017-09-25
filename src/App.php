@@ -17,7 +17,7 @@ class App extends DIBridge
     protected function configureContainer(ContainerBuilder $builder)
     {
         $builder->addDefinitions([
-            'settings.displayErrorDetails' => getenv('NODE_ENV') == 'dev',
+            'settings.displayErrorDetails' => true,
             'settings.determineRouteBeforeAppMiddleware' => true,
         ]);
 
