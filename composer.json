@@ -46,5 +46,12 @@
         "test": "phpunit",
         "cs": "phpcs --standard=PSR2 src/",
         "cbf": "phpcbf --standard=PSR2 src/"
+    },
+    "config": {
+        "fxp-asset": {
+            "installer-paths": {
+                "npm-asset-library": "node_modules"
+            }
+        }
     }
 }
