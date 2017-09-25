@@ -11,19 +11,19 @@ if (PHP_SAPI == 'cli-server') {
 
 session_start();
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
 $dotenv->load();
 
-$settings = include __DIR__ . '/src/dependencies.php';
+$settings = include __DIR__ . '/../src/dependencies.php';
 
 $app = new \App\App;
 
 $container = $app->getContainer();
 
-require __DIR__ . '/src/middleware.php';
+require __DIR__ . '/../src/middleware.php';
 
-require __DIR__ . '/src/routes.php';
+require __DIR__ . '/../src/routes.php';
 
 $app->run();
