@@ -43,23 +43,25 @@ return [
     },
 
     // Doctrine
-    'doctrine.config' => [
-        'meta' => [
-            'entity_path' => [
-                __DIR__ . '/Entity'
+    'doctrine.config' => function (\Psr\Container\ContainerInterface $c) {
+        return [
+            'meta' => [
+                'entity_path' => [
+                    __DIR__ . '/Entity'
+                ],
+                'auto_generate_proxies' => true,
+                'proxy_dir' => __DIR__ . '/../cache/proxies',
+                'cache' => null,
             ],
-            'auto_generate_proxies' => true,
-            'proxy_dir' => __DIR__ . '/../cache/proxies',
-            'cache' => null,
-        ],
-        'connection' => [
-            'driver' => 'pdo_mysql',
-            'host' => 'localhost',
-            'dbname' => 'foo',
-            'user' => 'root',
-            'password' => '',
-        ]
-    ],
+            'connection' => [
+                'driver' => 'pdo_mysql',
+                'host' => getenv('HOST'),
+                'dbname' => getenv('DATABASE'),
+                'user' => getenv('DB_USER'),
+                'password' => getenv('DB_PASSWORD'),
+            ]
+        ];
+    },
     \Doctrine\ORM\EntityManager::class => function (\Psr\Container\ContainerInterface $c) {
         $settings = $c->get('doctrine.config');
         $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(

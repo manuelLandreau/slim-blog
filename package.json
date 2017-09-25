@@ -6,7 +6,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "knacss": "^6.1.2",
-    "shufflejs": "^5.0.1",
-    "trumbowyg": "^2.7.2"
+    "shufflejs": "^5.0.2",
+    "trumbowyg": "^2.8.0"
   }
 }

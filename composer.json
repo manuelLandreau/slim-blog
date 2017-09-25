@@ -11,7 +11,9 @@
         "slim/csrf": "^0.8.1",
         "tuupola/slim-basic-auth": "^2.2",
         "pagerange/flash": "@alpha",
-        "tuupola/cors-middleware": "^0.5.2"
+        "tuupola/cors-middleware": "^0.5.2",
+        "vlucas/phpdotenv": "^2.4",
+        "eloquent/composer-npm-bridge": "4"
     },
     "require-dev": {
         "monolog/monolog": "^1.17",
