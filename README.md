@@ -2,5 +2,5 @@
 ###PHP-DI Doctrine Twig ...
 
 To do : 
-- Flash messages
 - Handle errors
+- Form validation
