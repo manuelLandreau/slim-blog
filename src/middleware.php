@@ -5,15 +5,15 @@ use \Slim\Http\Response;
 
 // Basic http auth
 $app->add(new \Slim\Middleware\HttpBasicAuthentication([
-            "path" => "/",
-            "passthrough" => ['/api', '/public', '/css/*.css'],
-            "realm" => "Protected",
-//        "secure" => false,
-//        "relaxed" => ["localhost:8000"],
-            "users" => [
-                "admin" => "admin",
+            'path' => '/',
+            'passthrough' => ['/api', '/public', '/css/*.css'],
+            'realm' => 'Protected',
+            'secure' => false,
+            'relaxed' => ['localhost:8000', '58cd6c5487.url-de-test.ws'],
+            'users' => [
+                'admin' => 'admin',
             ],
-            "callback" => function (Request $request, Response $response) {
+            'callback' => function (Request $request, Response $response) {
                 return $response->withRedirect('/articles', 301);
             }]
     ));
