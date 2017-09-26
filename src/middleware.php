@@ -11,12 +11,11 @@ $app->add(new \Slim\Middleware\HttpBasicAuthentication([
             'secure' => false,
             'relaxed' => ['localhost:8000', '58cd6c5487.url-de-test.ws'],
             'users' => [
-                'admin' => 'admin',
+                getenv('HTTP_USER') => getenv('HTTP_PASSWORD'), // TODO: create a methode for for password encryption
             ],
             'callback' => function (Request $request, Response $response) {
                 return $response->withRedirect('/articles', 301);
-            }]
-    ));
+            }]));
 
 // Cors middleware
 $app->add(new \Tuupola\Middleware\Cors([
