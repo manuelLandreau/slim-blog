@@ -20,6 +20,7 @@ return [
         ));
 
         $twig->getEnvironment()->addGlobal('flash', $c->get('flash')->flash());
+        $twig->getEnvironment()->addGlobal('prefix', getenv('NODE_ENV') == 'prod' ? '/public' : '');
 
         return $twig;
     },
@@ -54,7 +55,7 @@ return [
                 'cache' => null,
             ],
             'connection' => [
-                'driver' => 'pdo_pgsql',
+                'driver' => getenv('DRIVER'),
                 'host' => getenv('HOST'),
                 'dbname' => getenv('DATABASE'),
                 'user' => getenv('DB_USER'),

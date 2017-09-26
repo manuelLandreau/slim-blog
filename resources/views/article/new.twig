@@ -3,8 +3,8 @@
 {% block title %}SLIM Blog - New Article{% endblock %}
 
 {% block stylesheet %}
-    <link rel="stylesheet" href="{{ base_url() }}/css/trumbowyg.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ base_url() }}/css/article/article.css">
+    <link rel="stylesheet" href="{{ base_url() }}{{ prefix }}/css/trumbowyg.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ base_url() }}{{ prefix }}/css/article/article.css">
 {% endblock %}
 
 {% block sidemenu %}
@@ -40,11 +40,11 @@
 {% endblock %}
 
 {% block javascript %}
-    <script src="{{ base_url() }}/js/trumbowyg.min.js"></script>
+    <script src="{{ base_url() }}{{ prefix }}/js/trumbowyg.min.js"></script>
     <script>
         $(function () {
             $('#content').trumbowyg({
-                svgPath: '{{ base_url() }}/css/icons.svg'
+                svgPath: '{{ base_url() }}{{ prefix }}/css/icons.svg'
             });
         });
     </script>
