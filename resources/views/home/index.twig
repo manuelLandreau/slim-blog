@@ -15,9 +15,10 @@
     <div class="shuffle-container mb20px">
         {% for article in articles %}
         <a href="{{ path_for('article.show', { 'id': article.id }) }}">
-            <div class="article-item col-md-4 card lazy" data-title="{{ article.title }}">
+            <div class="article-item col-md-4 card lazy" data-asin="{{ article.asin }}">
                 <div class="card-block">
                     <h4 class="list-group-item-heading article-item__title">{{ article.title }}</h4>
+                    <small>N° ASIN : {{ article.asin }}</small>
                     <hr>
                     <p class="list-group-item-text mb10px">{{ article.description }}</p>
                     <a href="{{ path_for('article.edit', { 'id': article.id }) }}" class="btn btn-primary mb10px">Edit</a>
@@ -44,7 +45,7 @@
 
                 shuffleInstance.filter(function (elem, shuffle) {
                     if(searchText !== '') {
-                        var titleElement = elem.getAttribute('data-title').toLowerCase().trim();
+                        var titleElement = elem.getAttribute('data-asin').toLowerCase().trim();
                         return titleElement.indexOf(searchText) !== -1;
                     } else if (searchText === '') {
                         return true;
