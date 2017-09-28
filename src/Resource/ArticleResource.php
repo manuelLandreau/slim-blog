@@ -34,13 +34,16 @@ class ArticleResource extends AbstractResource
         $AWSArticle = AWSService::getProductInfo($request->getParam('asin'));
 
         $article->setAsin($request->getParam('asin'));
+        $article->setAmazonUrl($request->getParam('amazon_url'));
         $article->setTitle($AWSArticle['title']);
         $article->setDescription($AWSArticle['description']);
         $article->setContent($AWSArticle['content']);
         $article->setDetails($AWSArticle['details']);
+        $article->setPrice($AWSArticle['price']);
         $article->setSmallImageUrl($AWSArticle['small_image']);
         $article->setMediumImageUrl($AWSArticle['medium_image']);
         $article->setLargeImageUrl($AWSArticle['large_image']);
+        $article->setImageSet($AWSArticle['image_set']);
         $article->setCreatedAt(new \DateTime());
         $article->setUpdatedAt(new \DateTime());
         $article->setSlug($request->getParam('slug'));
@@ -98,14 +101,18 @@ class ArticleResource extends AbstractResource
         $AWSArticle = AWSService::getProductInfo($request->getParam('asin'));
 
         $article->setAsin($request->getParam('asin'));
+        $article->setAmazonUrl($request->getParam('amazon_url'));
         $article->setTitle($AWSArticle['title']);
         $article->setDescription($AWSArticle['description']);
         $article->setContent($AWSArticle['content']);
         $article->setDetails($AWSArticle['details']);
+        $article->setPrice($AWSArticle['price']);
         $article->setSmallImageUrl($AWSArticle['small_image']);
         $article->setMediumImageUrl($AWSArticle['medium_image']);
         $article->setLargeImageUrl($AWSArticle['large_image']);
+        $article->setImageSet($AWSArticle['image_set']);
         $article->setUpdatedAt(new \DateTime());
+        $article->setSlug($request->getParam('slug'));
 
         $this->entityManager->merge($article);
         $this->entityManager->flush();

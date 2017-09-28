@@ -23,24 +23,34 @@ class Article
     protected $asin;
 
     /**
-     * @Column(type="string", length=64)
+     * @Column(type="string", length=255)
      */
     protected $title;
 
     /**
-     * @Column(type="string", length=64)
+     * @Column(type="text")
      */
     protected $description;
 
     /**
-     * @Column(type="string", length=64)
+     * @Column(type="text")
      */
     protected $content;
 
     /**
-     * @Column(type="string", length=64)
+     * @Column(type="text")
      */
     protected $details;
+
+    /**
+     * @Column(type="string", length=64)
+     */
+    protected $price;
+
+    /**
+     * @Column(type="string", length=64)
+     */
+    protected $amazonUrl;
 
     /**
      * @Column(type="text", length=150, nullable=true)
@@ -56,6 +66,11 @@ class Article
      * @Column(type="text", length=150, nullable=true)
      */
     protected $largeImageUrl;
+
+    /**
+     * @Column(type="text", length=150, nullable=true)
+     */
+    protected $imageSet;
 
     /**
      * @Column(type="date", name="created_at")
@@ -175,6 +190,38 @@ class Article
     /**
      * @return mixed
      */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmazonUrl()
+    {
+        return $this->amazonUrl;
+    }
+
+    /**
+     * @param mixed $amazonUrl
+     */
+    public function setAmazonUrl($amazonUrl)
+    {
+        $this->amazonUrl = $amazonUrl;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getSmallImageUrl()
     {
         return $this->smallImageUrl;
@@ -218,6 +265,22 @@ class Article
     public function setLargeImageUrl($largeImageUrl)
     {
         $this->largeImageUrl = $largeImageUrl;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageSet()
+    {
+        return $this->imageSet;
+    }
+
+    /**
+     * @param mixed $imageSet
+     */
+    public function setImageSet($imageSet)
+    {
+        $this->imageSet = $imageSet;
     }
 
     /**
