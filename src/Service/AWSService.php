@@ -42,7 +42,7 @@ class AWSService
 
         $parsed = \App\Service\XMLParser::xmlstr_to_array($response);
 
-        VarDumper::dump($parsed);
+        // VarDumper::dump($parsed);
 
         $productInfos['small_image'] = $parsed['Items']['Item']['SmallImage']['URL'];
         $productInfos['medium_image'] = $parsed['Items']['Item']['MediumImage']['URL'];
