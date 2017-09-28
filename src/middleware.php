@@ -9,7 +9,7 @@ $app->add(new \Slim\Middleware\HttpBasicAuthentication([
             'passthrough' => ['/api', '/public', '/css/*.css'],
             'realm' => 'Protected',
             'secure' => false,
-            'relaxed' => ['localhost:8000', '58cd6c5487.url-de-test.ws'],
+//            'relaxed' => ['localhost:8000', '58cd6c5487.url-de-test.ws'],
             'users' => [
                 getenv('HTTP_USER') => getenv('HTTP_PASSWORD'), // TODO: create a methode for for password encryption
             ],
