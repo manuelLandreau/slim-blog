@@ -21,9 +21,9 @@ class AWSService
         $request = new GuzzleRequest($client);
         $conf
             ->setCountry('fr')
-            ->setAccessKey('AKIAINQ3FZVXVWDXFBZA')
-            ->setSecretKey('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')
-            ->setAssociateTag('zenzentai_id')
+            ->setAccessKey(getenv('AccessKey'))
+            ->setSecretKey(getenv('SecretKey'))
+            ->setAssociateTag(getenv('AssociateTag'))
             ->setRequest($request);
         return new ApaiIO($conf);
     }
