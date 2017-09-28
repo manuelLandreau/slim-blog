@@ -20,12 +20,57 @@ class Article
     /**
      * @Column(type="string", length=64)
      */
+    protected $asin;
+
+    /**
+     * @Column(type="string", length=255)
+     */
     protected $title;
 
     /**
-     * @Column(type="text", length=150)
+     * @Column(type="text")
      */
     protected $description;
+
+    /**
+     * @Column(type="text")
+     */
+    protected $content;
+
+    /**
+     * @Column(type="text")
+     */
+    protected $details;
+
+    /**
+     * @Column(type="string", length=64)
+     */
+    protected $price;
+
+    /**
+     * @Column(type="string", length=64)
+     */
+    protected $amazonUrl;
+
+    /**
+     * @Column(type="text", length=150, nullable=true)
+     */
+    protected $smallImageUrl;
+
+    /**
+     * @Column(type="text", length=150, nullable=true)
+     */
+    protected $mediumImageUrl;
+
+    /**
+     * @Column(type="text", length=150, nullable=true)
+     */
+    protected $largeImageUrl;
+
+    /**
+     * @Column(type="text", length=150, nullable=true)
+     */
+    protected $imageSet;
 
     /**
      * @Column(type="date", name="created_at")
@@ -38,13 +83,8 @@ class Article
     protected $updatedAt;
 
     /**
-     * @Column(type="text")
-     */
-    protected $content;
-
-    /**
      * Url name
-     * @Column(type="string", length=100, unique=true)
+     * @Column(type="string", length=100, unique=true, nullable=true)
      */
     protected $slug;
 
@@ -70,33 +110,177 @@ class Article
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getAsin(): string
+    {
+        return $this->asin;
+    }
+
+    /**
+     * @param string $asin
+     */
+    public function setAsin(string $asin)
+    {
+        $this->asin = $asin;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
     {
         return $this->title;
     }
 
     /**
-     * @param string $title
+     * @param mixed $title
      */
-    public function setTitle(string $title)
+    public function setTitle($title)
     {
         $this->title = $title;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->description;
     }
 
     /**
-     * @param string $description
+     * @param mixed $description
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param mixed $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
+
+    /**
+     * @param mixed $details
+     */
+    public function setDetails($details)
+    {
+        $this->details = $details;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmazonUrl()
+    {
+        return $this->amazonUrl;
+    }
+
+    /**
+     * @param mixed $amazonUrl
+     */
+    public function setAmazonUrl($amazonUrl)
+    {
+        $this->amazonUrl = $amazonUrl;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSmallImageUrl()
+    {
+        return $this->smallImageUrl;
+    }
+
+    /**
+     * @param mixed $smallImageUrl
+     */
+    public function setSmallImageUrl($smallImageUrl)
+    {
+        $this->smallImageUrl = $smallImageUrl;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMediumImageUrl()
+    {
+        return $this->mediumImageUrl;
+    }
+
+    /**
+     * @param mixed $mediumImageUrl
+     */
+    public function setMediumImageUrl($mediumImageUrl)
+    {
+        $this->mediumImageUrl = $mediumImageUrl;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLargeImageUrl()
+    {
+        return $this->largeImageUrl;
+    }
+
+    /**
+     * @param mixed $largeImageUrl
+     */
+    public function setLargeImageUrl($largeImageUrl)
+    {
+        $this->largeImageUrl = $largeImageUrl;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageSet()
+    {
+        return $this->imageSet;
+    }
+
+    /**
+     * @param mixed $imageSet
+     */
+    public function setImageSet($imageSet)
+    {
+        $this->imageSet = $imageSet;
     }
 
     /**
@@ -129,22 +313,6 @@ class Article
     public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContent(): string
-    {
-        return $this->content;
-    }
-
-    /**
-     * @param string $content
-     */
-    public function setContent(string $content)
-    {
-        $this->content = $content;
     }
 
     /**

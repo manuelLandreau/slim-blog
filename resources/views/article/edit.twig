@@ -28,21 +28,16 @@
         <input type="hidden" name="{{csrf.nameKey}}" value="{{csrf.name}}">
         <input type="hidden" name="{{csrf.valueKey}}" value="{{csrf.value}}">
         <div class="form-group">
-            <label for="title">Title</label>
-            <input id="title" class="form-control" type="text" name="title" value="{{ article.title }}"/>
-        </div>
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea id="description" class="form-control" rows="5" name="description">{{ article.description }}</textarea>
-        </div>
-        <div class="form-group">
-            <label for="content">Content</label>
-            <textarea id="content" class="form-control" rows="5" name="content">{{ article.content }}</textarea>
-            </label>
+            <label for="asin">Numero ASIN</label>
+            <input id="asin" class="form-control" type="text" name="asin" value="{{ article.asin }}" />
         </div>
         <div class="form-group">
             <label for="slug">Slug</label>
-            <input id="slug" class="form-control" type="text" name="slug" value="{{ article.slug }}"/>
+            <input id="slug" class="form-control" type="text" name="slug" value="{{ article.slug }}" />
+        </div>
+        <div class="form-group">
+            <label for="amazon_url">Slug</label>
+            <input id="amazon_url" class="form-control" type="text" name="amazon_url" value="{{ article.amazonUrl }}" />
         </div>
         <div class="text-right mb20px">
             <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-ok"></span> Submit</button>

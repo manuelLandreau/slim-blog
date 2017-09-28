@@ -65,12 +65,11 @@ final class ArticleController extends AbstractController
         // Id param
         $id = $request->getAttributes()['routeInfo'][2] ? $request->getAttributes()['routeInfo'][2]['id'] : null;
 
-        VarDumper::dump($request);
-
         // get the Csrf tokens
         $csrf = $this->getCsrf($request);
 
         if (empty($id)) {
+
             if ($request->getMethod() == 'POST') {
                 $article = $this->articleResource->create($request);
                 $id = $article->getTitle();

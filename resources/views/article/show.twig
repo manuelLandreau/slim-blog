@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ article.title }}</h1>
+    <h1>{{ article.title }} <small>N° ASIN : {{ article.asin }}</small></h1>
     <div class="mb20px">{{ article.content|raw }}</div>
     <div class="text-muted text-right">
         Last update {{ article.updatedAt|date("m/d/Y", "Europe/Paris") }} at {{ article.updatedAt|date("h:m", "Europe/Paris") }}

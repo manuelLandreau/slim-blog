@@ -2,8 +2,11 @@
 
 namespace App\Resource;
 
+use App\Controller\ArticleController;
 use App\Entity\Article;
+use App\Service\AWSService;
 use Doctrine\ORM\EntityManager;
+use Psr\Container\ContainerInterface;
 use Slim\Http\Request;
 use Symfony\Component\VarDumper\VarDumper;
 
@@ -14,9 +17,11 @@ use Symfony\Component\VarDumper\VarDumper;
  */
 class ArticleResource extends AbstractResource
 {
-    public function __construct(EntityManager $entityManager)
+    protected $container;
+
+    public function __construct(EntityManager $entityManager, ContainerInterface $container)
     {
-        parent::__construct($entityManager);
+        parent::__construct($entityManager, $container);
     }
 
     /**
@@ -26,12 +31,23 @@ class ArticleResource extends AbstractResource
     public function create(Request $request): Article
     {
         $article = new Article();
-        $article->setTitle($request->getParam('title'));
-        $article->setDescription($request->getParam('description'));
+        $AWSArticle = AWSService::getProductInfo($request->getParam('asin'));
+
+        $article->setAsin($request->getParam('asin'));
+        $article->setAmazonUrl($request->getParam('amazon_url'));
+        $article->setTitle($AWSArticle['title']);
+        $article->setDescription($AWSArticle['description']);
+        $article->setContent($AWSArticle['content']);
+        $article->setDetails($AWSArticle['details']);
+        $article->setPrice($AWSArticle['price']);
+        $article->setSmallImageUrl($AWSArticle['small_image']);
+        $article->setMediumImageUrl($AWSArticle['medium_image']);
+        $article->setLargeImageUrl($AWSArticle['large_image']);
+        $article->setImageSet($AWSArticle['image_set']);
         $article->setCreatedAt(new \DateTime());
         $article->setUpdatedAt(new \DateTime());
-        $article->setContent($request->getParam('content'));
         $article->setSlug($request->getParam('slug'));
+
         $this->entityManager->persist($article);
         $this->entityManager->flush();
         return $article;
@@ -82,11 +98,22 @@ class ArticleResource extends AbstractResource
     public function update(Request $request, string $id): Article
     {
         $article = $this->entityManager->getRepository('App\Entity\Article')->find($id);
-        $article->setTitle($request->getParam('title'));
-        $article->setDescription($request->getParam('description'));
+        $AWSArticle = AWSService::getProductInfo($request->getParam('asin'));
+
+        $article->setAsin($request->getParam('asin'));
+        $article->setAmazonUrl($request->getParam('amazon_url'));
+        $article->setTitle($AWSArticle['title']);
+        $article->setDescription($AWSArticle['description']);
+        $article->setContent($AWSArticle['content']);
+        $article->setDetails($AWSArticle['details']);
+        $article->setPrice($AWSArticle['price']);
+        $article->setSmallImageUrl($AWSArticle['small_image']);
+        $article->setMediumImageUrl($AWSArticle['medium_image']);
+        $article->setLargeImageUrl($AWSArticle['large_image']);
+        $article->setImageSet($AWSArticle['image_set']);
         $article->setUpdatedAt(new \DateTime());
-        $article->setContent($request->getParam('content'));
         $article->setSlug($request->getParam('slug'));
+
         $this->entityManager->merge($article);
         $this->entityManager->flush();
         return $article;
