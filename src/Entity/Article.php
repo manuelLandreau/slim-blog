@@ -23,22 +23,22 @@ class Article
     protected $asin;
 
     /**
-     * @Column(type="string", length=255)
+     * @Column(type="string", length=255, nullable=true)
      */
     protected $title;
 
     /**
-     * @Column(type="text")
+     * @Column(type="text", nullable=true)
      */
     protected $description;
 
     /**
-     * @Column(type="text")
+     * @Column(type="text", nullable=true)
      */
     protected $content;
 
     /**
-     * @Column(type="text")
+     * @Column(type="text", nullable=true)
      */
     protected $details;
 
@@ -73,12 +73,12 @@ class Article
     protected $imageSet;
 
     /**
-     * @Column(type="date", name="created_at")
+     * @Column(type="date", name="created_at", nullable=true)
      */
     protected $createdAt;
 
     /**
-     * @Column(type="date", name="updated_at")
+     * @Column(type="date", name="updated_at", nullable=true)
      */
     protected $updatedAt;
 
