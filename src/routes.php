@@ -8,10 +8,7 @@ $app->get('/api/articles', ['\App\Controller\ApiController', 'fetch']);
 $app->get('/api/articles/{slug:[a-zA-Z0-9_-]+}', ['\App\Controller\ApiController', 'fetchOneBySlug']);
 
 
-// BO routes
-$app->get('/', ['\App\Controller\DefaultController', 'indexAction']);
-
-$app->get('/articles', ['\App\Controller\ArticleController', 'indexAction'])
+$app->get('/', ['\App\Controller\ArticleController', 'indexAction'])
     ->setName('home');
 
 $app->get('/articles/show/{id:[0-9]+}', ['\App\Controller\ArticleController', 'showAction'])
