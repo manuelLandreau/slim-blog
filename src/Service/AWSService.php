@@ -7,7 +7,6 @@ use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Operations\Lookup;
 use ApaiIO\Request\GuzzleRequest;
 use GuzzleHttp\Client;
-use Symfony\Component\VarDumper\VarDumper;
 
 class AWSService
 {
