@@ -5,8 +5,8 @@ use \Slim\Http\Response;
 
 // Basic http auth
 $app->add(new \Slim\Middleware\HttpBasicAuthentication([
-            'path' => '/',
-            'passthrough' => ['/api', '/public', '/css/*.css'],
+            'path' => '/articles',
+            //'passthrough' => ['/api', '/public', '/css/*.css'],
             'realm' => 'Protected',
             'secure' => false,
 	    'relaxed' => ['localhost:8000', 'http://58cd6c5487.url-de-test.ws'],
