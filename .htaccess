@@ -1,5 +1,4 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^public public/index.php [L]
-RewriteRule ^ app/index.html [L]
+RewriteRule ^ public/index.php [L]
 RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
