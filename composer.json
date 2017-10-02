@@ -4,7 +4,7 @@
     "type": "project",
     "require": {
         "slim/slim": "^3.4",
-        "doctrine/orm": "v2.5.9",
+        "doctrine/orm": "^2.4",
         "php-di/slim-bridge": "^1.0",
         "slim/twig-view": "^2.2",
         "slim/views": "^0.1.3",
