@@ -18,7 +18,7 @@ class Article
     protected $id;
 
     /**
-     * @Column(type="string", length=64)
+     * @Column(type="string", length=255)
      */
     protected $asin;
 
@@ -43,32 +43,32 @@ class Article
     protected $details;
 
     /**
-     * @Column(type="string", length=64)
+     * @Column(type="string", length=255)
      */
     protected $price;
 
     /**
-     * @Column(type="string", length=64)
+     * @Column(type="string", length=255)
      */
     protected $amazonUrl;
 
     /**
-     * @Column(type="text", length=150, nullable=true)
+     * @Column(type="text", length=255, nullable=true)
      */
     protected $smallImageUrl;
 
     /**
-     * @Column(type="text", length=150, nullable=true)
+     * @Column(type="text", length=255, nullable=true)
      */
     protected $mediumImageUrl;
 
     /**
-     * @Column(type="text", length=150, nullable=true)
+     * @Column(type="text", length=255, nullable=true)
      */
     protected $largeImageUrl;
 
     /**
-     * @Column(type="text", length=150, nullable=true)
+     * @Column(type="text", length=255, nullable=true)
      */
     protected $imageSet;
 
@@ -84,7 +84,7 @@ class Article
 
     /**
      * Url name
-     * @Column(type="string", length=100, unique=true, nullable=true)
+     * @Column(type="string", length=255, unique=true, nullable=true)
      */
     protected $slug;
 
