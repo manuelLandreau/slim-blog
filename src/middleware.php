@@ -17,9 +17,9 @@ $app->add(new \Slim\Middleware\HttpBasicAuthentication([
                 return $response->withRedirect('/articles', 301);
             }]));
 
- Cors middleware
+ //Cors middleware
  $app->add(new \Tuupola\Middleware\Cors([
-    'origin' => ['www.zenzentai.com', 'zenzentai.com', 'zenzentai-21.firebaseapp.com', 'localhost:8080'],
+    'origin' => ['*'],
     'methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     'headers.allow' => [],
     'headers.expose' => [],
