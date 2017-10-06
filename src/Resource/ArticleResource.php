@@ -46,7 +46,7 @@ class ArticleResource extends AbstractResource
         $article->setImageSet($AWSArticle['image_set']);
         $article->setCreatedAt(new \DateTime());
         $article->setUpdatedAt(new \DateTime());
-        $article->setSlug($request->getParam('slug'));
+        $article->setSlug(AWSService::slug($AWSArticle['title']));
 
         $this->entityManager->persist($article);
         $this->entityManager->flush();
